@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Recuperar Senha</title>
+    <link rel="stylesheet" href="style-recuperarSenha.css">
+    <script src="recuperarSenha.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h2>Recuperar Senha</h2>
+        <form id="recuperarForm" onsubmit="return enviarLinkRecuperacao(event)">
+            <label for="email">Digite seu email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <button type="submit">Enviar link de recuperação</button>
+        </form>
+
+        <!-- Mensagem escondida inicialmente -->
+        <p id="mensagem" class="mensagem-sucesso" style="display: none;">
+            Um link de recuperação foi enviado para seu email.
+        </p>
+    </div>
+</body>
+</html>
