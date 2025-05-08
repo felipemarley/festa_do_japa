@@ -1,28 +1,49 @@
-</html>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-    <link rel="stylesheet" href="style-login.css">
-    <script src="login.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login | Sabor & Arte</title>
+  <link rel="stylesheet" href="style-login.css" />
+  <script src="login.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h2>Login</h2>
-        <form id="loginForm" action="/login" method="post" onsubmit="return validarLogin()">
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Sabor & Arte</h1>
+      <ul class="nav-links">
+        <li><a href="../Homepage/homepage.html">Início</a></li>
+        <li><a href="#">Cardápio</a></li>
+        <li><a href="#">Reservas</a></li>
+        <li><a href="../Contato/contato.html">Contato</a></li>
+        <li><a href="../Login/login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
 
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" name="senha" required>
+  <main class="form-section">
+    <h2>Login</h2>
+    <form id="loginForm" class="contact-form" onsubmit="return validarLogin()">
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required />
 
-            <button type="submit">Entrar</button>
-        </form>
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" required />
 
-        <p class="link-recuperar">
-            <a href="../Recuperar senha/recuperarSenha.html">Esqueceu sua senha?</a>
-        </p>
-    </div>
+      <button type="submit" class="btn">Entrar</button>
+    </form>
+
+    <p class="link-recuperar" style="margin-top: 1rem;">
+      <a href="/Recuperar senha/recuperarSenha.html">Esqueceu sua senha?</a>
+    </p>
+
+    <p class="link-registro">
+      <a href="/Registrar/registro.html">Não tem uma conta? Cadastre-se</a>
+    </p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sabor & Arte. Todos os direitos reservados.</p>
+  </footer>
 </body>
 </html>

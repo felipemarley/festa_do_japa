@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Recuperar Senha</title>
-    <link rel="stylesheet" href="style-recuperarSenha.css">
-    <script src="recuperarSenha.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recuperação de Senha | Sabor & Arte</title>
+  <link rel="stylesheet" href="style-recuperarSenha.css" />
+  <script src="recuperarSenha.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <h2>Recuperar Senha</h2>
-        <form id="recuperarForm" onsubmit="return enviarLinkRecuperacao(event)">
-            <label for="email">Digite seu email:</label>
-            <input type="email" id="email" name="email" required>
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Sabor & Arte</h1>
+      <ul class="nav-links">
+        <li><a href="../Homepage/homepage.html">Início</a></li>
+        <li><a href="#">Cardápio</a></li>
+        <li><a href="#">Reservas</a></li>
+        <li><a href="../Contato/contato.html">Contato</a></li>
+        <li><a href="../Login/login.html">Login</a></li>
+      </ul>
+    </nav>
+  </header>
 
-            <button type="submit">Enviar link de recuperação</button>
-        </form>
+  <main class="form-section">
+    <h2>Recuperação de Senha</h2>
+    <form id="recuperarSenhaForm" class="contact-form" onsubmit="return validarRecuperacaoSenha(event)">
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" required />
 
-        <!-- Mensagem escondida inicialmente -->
-        <p id="mensagem" class="mensagem-sucesso" style="display: none;">
-            Um link de recuperação foi enviado para seu email.
-        </p>
-    </div>
+      <button type="submit" class="btn">Recuperar Senha</button>
+    </form>
+
+    <p class="link-recuperar">
+      <a href="../Login/login.html">Voltar para o Login</a>
+    </p>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Sabor & Arte. Todos os direitos reservados.</p>
+  </footer>
 </body>
 </html>
