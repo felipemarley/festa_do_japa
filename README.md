@@ -1,5 +1,9 @@
-# Vue 3 + Vite
+# Festa do Japa
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Site fictício para a disciplina DIM0546 - DESENVOLVIMENTO DE SISTEMAS WEB I
+ofertada em 2025.1 pelo professor Jair Calvacanti https://docente.ufrn.br/201900368751/perfil
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+Autores: Felipe Marley, Nícolas Kevin e Ramon Almeida.
+
+O foco principal foi na aprendizagem de elementos do frontend: HTML, CSS e JS Vanilla. 
+Além disso, aplicando Vue.js no frontend e Node.js no backend.

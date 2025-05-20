@@ -18,10 +18,6 @@
         <button type="submit" class="btn">Registrar</button>
       </form>
     </main>
-
-    <footer>
-      <p>&copy; 2025 Festa do Japa. Todos os direitos reservados.</p>
-    </footer>
   </div>
 </template>
 

@@ -13,10 +13,6 @@
         <RouterLink to="/login">Voltar para o Login</RouterLink>
       </p>
     </main>
-
-    <footer>
-      <p>&copy; 2025 Festa do Japa. Todos os direitos reservados.</p>
-    </footer>
   </div>
 </template>
 

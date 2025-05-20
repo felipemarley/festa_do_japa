@@ -20,10 +20,6 @@
         <RouterLink to="/registrar">Não tem uma conta? Cadastre-se</RouterLink>
       </p>
     </main>
-
-    <footer>
-      <p>&copy; 2025 Festa do Japa. Todos os direitos reservados.</p>
-    </footer>
   </div>
 </template>
 
