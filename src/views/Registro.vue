@@ -1,18 +1,5 @@
 <template>
   <div>
-    <header>
-      <nav class="navbar">
-        <h1 class="logo">Festa do Japa</h1>
-        <ul class="nav-links">
-          <li><router-link to="/">Início</router-link></li>
-          <li><a href="#">Cardápio</a></li>
-          <li><a href="#">Reservas</a></li>
-          <li><router-link to="/contato">Contato</router-link></li>
-          <li><router-link to="/login">Login</router-link></li>
-        </ul>
-      </nav>
-    </header>
-
     <main class="form-section">
       <h2>Registro de Usuário</h2>
       <form class="contact-form" @submit.prevent="registrar">

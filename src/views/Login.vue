@@ -1,18 +1,5 @@
 <template>
   <div>
-    <header>
-      <nav class="navbar">
-        <h1 class="logo">Festa do Japa</h1>
-        <ul class="nav-links">
-          <li><RouterLink to="/home">Início</RouterLink></li>
-          <li><a href="#">Cardápio</a></li>
-          <li><a href="#">Reservas</a></li>
-          <li><RouterLink to="/contato">Contato</RouterLink></li>
-          <li><RouterLink to="/login">Login</RouterLink></li>
-        </ul>
-      </nav>
-    </header>
-
     <main class="form-section">
       <h2>Login</h2>
       <form @submit.prevent="validarLogin" class="contact-form" autocomplete="off">
