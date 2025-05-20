@@ -15,12 +15,12 @@
 
     <main class="form-section">
       <h2>Login</h2>
-      <form @submit.prevent="validarLogin" class="contact-form">
+      <form @submit.prevent="validarLogin" class="contact-form" autocomplete="off">
         <label for="email">E-mail:</label>
-        <input type="email" id="email" v-model="email" required />
+        <input type="email" id="email" v-model="email" required autocomplete="off" />
 
         <label for="senha">Senha:</label>
-        <input type="password" id="senha" v-model="senha" required />
+        <input type="password" id="senha" v-model="senha" required autocomplete="new-password" />
 
         <button type="submit" class="btn">Entrar</button>
       </form>
@@ -41,10 +41,15 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue'
 
 const email = ref('')
 const senha = ref('')
+
+onMounted(() => {
+  email.value = ''
+  senha.value = ''
+})
 
 function validarLogin() {
   if (!email.value || !senha.value) {
@@ -61,55 +66,3 @@ function validarLogin() {
   alert('Login bem-sucedido!')
 }
 </script>
-
-<style scoped>
-/* Adaptado de style-login.css */
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #333;
-}
-
-.form-section {
-  padding: 2rem;
-  max-width: 500px;
-  margin: 0 auto;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.contact-form label {
-  margin-top: 1rem;
-}
-
-.contact-form input {
-  padding: 0.5rem;
-  margin-top: 0.25rem;
-}
-
-.btn {
-  margin-top: 1.5rem;
-  padding: 0.5rem;
-  cursor: pointer;
-}
-
-footer {
-  text-align: center;
-  margin-top: 2rem;
-}
-</style>

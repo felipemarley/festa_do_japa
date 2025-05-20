@@ -1,0 +1,68 @@
+<template>
+  <div>
+    <header>
+      <nav class="navbar">
+        <h1 class="logo">Festa do Japa</h1>
+        <ul class="nav-links">
+          <li><router-link to="/">Início</router-link></li>
+          <li><a href="#">Cardápio</a></li>
+          <li><a href="#">Reservas</a></li>
+          <li><router-link to="/contato">Contato</router-link></li>
+          <li><router-link to="/login">Login</router-link></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main class="form-section">
+      <h2>Fale Conosco</h2>
+      <p>Preencha o formulário abaixo e responderemos em breve.</p>
+
+      <form class="contact-form" @submit.prevent="enviarFormulario">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" v-model="nome" required />
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" v-model="email" required />
+
+        <label for="mensagem">Mensagem:</label>
+        <textarea id="mensagem" v-model="mensagem" rows="5" required></textarea>
+
+        <button type="submit" class="btn">Enviar</button>
+      </form>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Festa do Japa. Todos os direitos reservados.</p>
+    </footer>
+  </div>
+</template>
+
+<script>
+export default {
+  name: "Contato",
+  data() {
+    return {
+      nome: '',
+      email: '',
+      mensagem: ''
+    }
+  },
+  methods: {
+    enviarFormulario() {
+      if (!this.nome || !this.email || !this.mensagem) {
+        alert("Por favor, preencha todos os campos.");
+        return;
+      }
+
+      // Aqui você pode integrar com um backend futuramente
+      alert("Mensagem enviada com sucesso!");
+
+      // Resetando os campos
+      this.nome = '';
+      this.email = '';
+      this.mensagem = '';
+    }
+  }
+}
+</script>
+

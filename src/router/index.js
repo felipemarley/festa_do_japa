@@ -2,8 +2,32 @@ import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../views/Login.vue'
 
 const routes = [
-  { path: '/login', name: 'Login', component: Login },
-  // outras rotas
+  { path: '/login', 
+    name: 'Login', 
+    component: () => import('../views/Login.vue')
+  },
+
+  {path: '/recuperar-senha',
+  name: 'RecuperarSenha',
+  component: () => import('../views/RecuperarSenha.vue')
+  },
+
+  {path: '/',
+  name: 'Homepage',
+  component: () => import('../views/Homepage.vue')
+  },
+  
+  {path: "/contato",
+  name: "Contato",
+  component: () => import("../views/Contato.vue")
+  },
+  
+  {path: "/registrar",
+  name: "Registro",
+  component: () => import("../views/Registro.vue")
+  } 
+
+
 ]
 
 const router = createRouter({
@@ -12,3 +36,4 @@ const router = createRouter({
 })
 
 export default router
+
