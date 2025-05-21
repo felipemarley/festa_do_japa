@@ -5,5 +5,5 @@ ofertada em 2025.1 pelo professor Jair Calvacanti https://docente.ufrn.br/201900
 
 Autores: Felipe Marley, Nícolas Kevin e Ramon Almeida.
 
-O foco principal foi na aprendizagem de elementos do frontend: HTML, CSS e JS Vanilla. 
-Além disso, aplicando Vue.js no frontend e Node.js no backend.
+O foco principal foi na aprendizagem de elementos do frontend: Vue.js. 
+Além disso, Node.js no backend.

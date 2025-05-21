@@ -38,10 +38,10 @@ export default {
         return;
       }
 
-      // Aqui você pode integrar com um backend futuramente
+      //todo
       alert("Mensagem enviada com sucesso!");
 
-      // Resetando os campos
+      //limpando campos
       this.nome = '';
       this.email = '';
       this.mensagem = '';

@@ -1,4 +1,3 @@
-<!-- src/views/Homepage.vue -->
 <template>
   <main class="home-container">
     <section class="hero">

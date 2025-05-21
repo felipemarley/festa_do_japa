@@ -29,7 +29,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 
-const apiKey = 'de5d75bd40bb42adac36d61b89a2e521' // substitua pela sua chave Spoonacular
+const apiKey = 'de5d75bd40bb42adac36d61b89a2e521' //Spoonacular API Key
 
 const pratos = ref([])
 const categoriaSelecionada = ref('Todos')
@@ -92,9 +92,8 @@ h1 {
   margin-bottom: 2rem;
 }
 
-/* Botões igual aos de Conta e Carrinho */
 .btn-filtro {
-  background-color: #222; /* preto */
+  background-color: #222; 
   color: white;
   border: none;
   padding: 0.75rem 1.5rem;
@@ -113,7 +112,7 @@ h1 {
 }
 
 .btn-filtro.ativo {
-  background-color: #ffd700; /* dourado */
+  background-color: #ffd700; 
   color: #000;
   box-shadow: 0 2px 10px rgba(255, 215, 0, 0.7);
 }
@@ -124,7 +123,6 @@ h1 {
   gap: 2.5rem;
 }
 
-/* Cards individuais dos pratos */
 .prato-card {
   background-color: #000;
   color: #fff;
@@ -161,6 +159,6 @@ h1 {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   margin: 0;
-  color: #ffd700; /* dourado para destaque */
+  color: #ffd700; 
 }
 </style>

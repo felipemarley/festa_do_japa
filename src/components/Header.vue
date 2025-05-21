@@ -102,7 +102,7 @@ function abrirCarrinho() {
 
 .nav {
   display: flex;
-  gap: 0.6rem; /* botões mais juntinhos */
+  gap: 0.6rem; 
   align-items: center;
   justify-content: flex-end;
   flex: 1;
@@ -193,7 +193,6 @@ function abrirCarrinho() {
   position: relative;
 }
 
-/* Dropdown */
 .dropdown-menu {
   position: absolute;
   top: 115%;
