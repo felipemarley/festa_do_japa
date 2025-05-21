@@ -45,10 +45,10 @@ import { RouterLink } from 'vue-router'
 import { Home, Utensils, Calendar, Phone, User, ShoppingCart } from 'lucide-vue-next'
 
 const mostrarDropdown = ref(false)
-const cartCount = ref(3) 
+const cartCount = ref(/*todo*/)
 
 function abrirCarrinho() {
-  //todo
+  // todo
 }
 </script>
 
@@ -67,7 +67,7 @@ function abrirCarrinho() {
 .header-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0.75rem 1.5rem;
+  padding: 0.4rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -88,21 +88,21 @@ function abrirCarrinho() {
 
 .restaurant-name {
   font-family: 'Sawarabi Mincho', serif;
-  font-size: 2.8rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: #fff;
   letter-spacing: 1.5px;
-  margin-left: 10px;
+  margin-left: 8px;
   white-space: nowrap;
 }
 
 .logo {
-  height: 50px;
+  height: 40px;
 }
 
 .nav {
   display: flex;
-  gap: 0.6rem; 
+  gap: 0.6rem;
   align-items: center;
   justify-content: flex-end;
   flex: 1;
@@ -113,11 +113,11 @@ function abrirCarrinho() {
   font-weight: 600;
   text-decoration: none;
   transition: color 0.3s ease;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.25rem 0.4rem;
+  gap: 0.3rem;
+  padding: 0.2rem 0.35rem;
   border-radius: 6px;
 }
 
@@ -138,9 +138,9 @@ function abrirCarrinho() {
 .btn-login {
   background-color: #000;
   color: #fff;
-  padding: 0.55rem 1.1rem;
+  padding: 0.4rem 0.8rem;
   border: none;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   font-weight: 700;
   border-radius: 0 25px 0 25px;
   cursor: pointer;
@@ -161,8 +161,8 @@ function abrirCarrinho() {
   background-color: #000;
   color: #fff;
   border: none;
-  padding: 0.5rem 1rem;
-  font-size: 1.1rem;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
   border-radius: 25px 0 25px 0;
   cursor: pointer;
   display: flex;
@@ -197,7 +197,7 @@ function abrirCarrinho() {
   position: absolute;
   top: 115%;
   right: 0;
-  background-color: #000; 
+  background-color: #000;
   border-radius: 6px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   z-index: 10;
@@ -207,7 +207,7 @@ function abrirCarrinho() {
 .dropdown-item {
   padding: 0.7rem 1.2rem;
   display: block;
-  color: #fff; 
+  color: #fff;
   font-weight: 600;
   text-decoration: none;
   font-size: 0.95rem;
@@ -215,18 +215,18 @@ function abrirCarrinho() {
 }
 
 .dropdown-item:hover {
-  background-color: #222; 
+  background-color: #222;
 }
 
 .dropdown-menu::before {
   content: '';
   position: absolute;
   top: -8px;
-  right: 12px; 
+  right: 12px;
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 8px solid #000; 
+  border-bottom: 8px solid #000;
 }
 </style>
