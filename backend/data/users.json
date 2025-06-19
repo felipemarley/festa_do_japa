@@ -4,5 +4,11 @@
     "sobrenome": "fe",
     "email": "fe@gmail.com",
     "senha": "oi"
+  },
+  {
+    "nome": "admin",
+    "sobrenome": "da silva",
+    "email": "admin@admin.com",
+    "senha": "admin"
   }
 ]

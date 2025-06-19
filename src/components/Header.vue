@@ -21,15 +21,24 @@
         <RouterLink to="/contato" class="nav-link">
           <Phone size="16" class="icon" /> Contato
         </RouterLink>
+
         <div class="dropdown-container" @mouseenter="mostrarDropdown = true" @mouseleave="mostrarDropdown = false">
           <button class="btn-login">
-            <User size="22" class="icon-white" /> Conta
+            <User size="22" class="icon-white" />
+            {{ usuario?.nome || 'Conta' }}
           </button>
           <div class="dropdown-menu" v-if="mostrarDropdown">
-            <RouterLink to="/login" class="dropdown-item">Login</RouterLink>
-            <RouterLink to="/registrar" class="dropdown-item">Cadastro</RouterLink>
+            <template v-if="usuario">
+              <span class="dropdown-item">Bem-vindo, {{ usuario.nome.split(' ')[0] }}</span>
+              <a href="#" class="dropdown-item" @click.prevent="deslogar">Sair</a>
+            </template>
+            <template v-else>
+              <RouterLink :to="'/login'" class="dropdown-item">Login</RouterLink>
+              <RouterLink :to="'/registrar'" class="dropdown-item">Cadastro</RouterLink>
+            </template>
           </div>
         </div>
+
         <button class="btn-cart" @click="abrirCarrinho">
           <ShoppingCart size="22" class="icon-white" />
           <span class="cart-count" v-if="cartCount > 0">{{ cartCount }}</span>
@@ -44,13 +53,24 @@ import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { Home, Utensils, Calendar, Phone, User, ShoppingCart } from 'lucide-vue-next'
 
+
 const mostrarDropdown = ref(false)
 const cartCount = ref(/*todo*/)
+
+// Simula usuário logado (substitua por lógica real)
+const usuario = ref(JSON.parse(localStorage.getItem('usuario')) || null)
 
 function abrirCarrinho() {
   // todo
 }
+
+function deslogar() {
+  localStorage.removeItem('usuario')
+  usuario.value = null
+  window.location.reload()
+}
 </script>
+
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&family=Poppins:wght@400;600&display=swap');

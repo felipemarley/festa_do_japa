@@ -5,3 +5,7 @@ const api = axios.create({
 });
 
 export default api;
+
+export function post(url, data) {
+  return api.post(url, data).then(response => response.data);
+}
