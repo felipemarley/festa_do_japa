@@ -1,1 +1,23 @@
-[]
+[
+  { "id": 1, "reservada": true, "nome": "Felipe", "sobrenome": "Marley" },
+  { "id": 2, "reservada": true, "nome": "Ana", "sobrenome": "Silva" },
+  { "id": 3, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 4, "reservada": true, "nome": "Nicolas", "sobrenome": "Kevin" },
+  { "id": 5, "reservada": true, "nome": "Lucas", "sobrenome": "Neto" },
+  { "id": 6, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 7, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 8, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 9, "reservada": true, "nome": "Ramon", "sobrenome": "Bonbon" },
+  { "id": 10, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 11, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 12, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 13, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 14, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 15, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 16, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 17, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 18, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 19, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 20, "reservada": false, "nome": "", "sobrenome": "" },
+  { "id": 21, "reservada": false, "nome": "", "sobrenome": "" }
+]

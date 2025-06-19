@@ -27,7 +27,6 @@
     <RouterLink to="/cardapio" class="btn">Comece pelo Cardápio</RouterLink>
   </section>
 
-    <!-- Seção Sobre -->
     <section class="nossa-historia">
     <div class="container-texto">
       <h2>Nossa História</h2>
@@ -137,10 +136,8 @@
 import { RouterLink } from 'vue-router'
 import { Calendar, Coffee, Moon, CheckCircle, Award, TrendingUp, Star, BookOpen, CalendarCheck, Handshake, MessageSquareHeart } from 'lucide-vue-next'
 import { ref, onMounted } from 'vue'
-// Estado para prato ilustrativo
 const pratoImagemUrl = ref('')
 
-// Função para buscar prato ilustrativo da Spoonacular
 async function fetchPrato() {
   try {
     const response = await fetch('https://api.spoonacular.com/recipes/random?number=1&tags=japanese&apiKey=de5d75bd40bb42adac36d61b89a2e521')

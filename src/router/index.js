@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import Login from '../views/Login.vue'
 
 const routes = [
   { 
@@ -36,6 +35,12 @@ const routes = [
     path: '/cardapio',
     name: 'Cardapio',
     component: () => import("../views/Cardapio.vue")
+  },
+
+  {
+    path: '/reservas',
+    name: 'Reservas',
+    component: () => import("../views/ReservaMesas.vue")
   }
 
 ]
