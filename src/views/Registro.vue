@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { post } from '@/services/api';
 export default {
   name: "Registro",
   data() {
@@ -33,20 +34,33 @@ export default {
     };
   },
   methods: {
-    registrar() {
+    async registrar() {
       if (!this.nome || !this.sobrenome || !this.email || !this.senha) {
         alert("Por favor, preencha todos os campos.");
         return;
       }
 
-      //integrar com backend
-      alert("Registro realizado com sucesso!");
-
-      // Limpa os campos
-      this.nome = '';
-      this.sobrenome = '';
-      this.email = '';
-      this.senha = '';
+      try {
+        const response = await post('/auth/register', {
+          nome: this.nome,
+          sobrenome: this.sobrenome,
+          email: this.email,
+          senha: this.senha
+        });
+        if (response.mensagem) {
+          alert(response.mensagem);
+          if (response.mensagem.includes('sucesso')) {
+            this.nome = '';
+            this.sobrenome = '';
+            this.email = '';
+            this.senha = '';
+            this.$router.push('/login'); 
+          }
+        }
+      } catch (error) {
+        alert('Erro ao registrar usuário.');
+        console.error(error);
+      }
     }
   }
 }

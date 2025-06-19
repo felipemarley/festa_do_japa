@@ -24,28 +24,36 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref } from 'vue';
+import { post } from '@/services/api';
+import { useRouter } from 'vue-router';
 
-const email = ref('')
-const senha = ref('')
+const router = useRouter();
+const email = ref('');
+const senha = ref('');
 
-onMounted(() => {
-  email.value = ''
-  senha.value = ''
-})
-
-function validarLogin() {
+async function validarLogin() {
   if (!email.value || !senha.value) {
-    alert('Por favor, preencha todos os campos.')
-    return
+    alert('Por favor, preencha todos os campos.');
+    return;
   }
 
-  const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
-  if (!emailRegex.test(email.value)) {
-    alert('Por favor, insira um email válido.')
-    return
-  }
+  try {
+    const response = await post('/auth/login', {
+      email: email.value,
+      senha: senha.value
+    });
 
-  alert('Login bem-sucedido!')
+    if (response.mensagem) {
+      alert(response.mensagem);
+      if (response.mensagem.includes('sucesso')) {
+        router.push('/'); 
+      }
+    }
+  } catch (error) {
+    alert('Erro ao fazer login.');
+    console.error(error);
+  }
 }
 </script>
+
