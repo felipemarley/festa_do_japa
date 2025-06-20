@@ -3,7 +3,6 @@ import path from 'path';
 
 const reservasPath = path.join(process.cwd(), 'data', 'reservations.json');
 
-// Função para garantir que o arquivo existe (com mesas vazias se precisar)
 function garantirArquivoReservas() {
   if (!fs.existsSync(reservasPath)) {
     const mesasVazias = Array.from({ length: 21 }, (_, i) => ({
@@ -22,6 +21,10 @@ function carregarReservas() {
   return JSON.parse(dados);
 }
 
+function salvarReservas(dados) {
+  fs.writeFileSync(reservasPath, JSON.stringify(dados, null, 2));
+}
+
 export const listarReservas = (req, res) => {
   try {
     const mesas = carregarReservas();
@@ -31,4 +34,29 @@ export const listarReservas = (req, res) => {
   }
 };
 
-// Futuramente aqui vão funções para criar/editar/excluir reservas, separando a lógica do filesystem
+export const reservarMesa = (req, res) => {
+  const { id, nome, sobrenome } = req.body;
+  if (!id || !nome || !sobrenome) {
+    return res.status(400).json({ erro: 'Dados incompletos.' });
+  }
+
+  const mesas = carregarReservas();
+  const index = mesas.findIndex(m => m.id === id);
+  if (index === -1) return res.status(404).json({ erro: 'Mesa não encontrada' });
+  if (mesas[index].reservada) return res.status(400).json({ erro: 'Mesa já reservada.' });
+
+  mesas[index] = { id, reservada: true, nome, sobrenome };
+  salvarReservas(mesas);
+  res.json({ mensagem: 'Mesa reservada com sucesso', mesa: mesas[index] });
+};
+
+export const cancelarReserva = (req, res) => {
+  const id = parseInt(req.params.id);
+  const mesas = carregarReservas();
+  const index = mesas.findIndex(m => m.id === id);
+  if (index === -1) return res.status(404).json({ erro: 'Mesa não encontrada' });
+
+  mesas[index] = { id, reservada: false, nome: '', sobrenome: '' };
+  salvarReservas(mesas);
+  res.json({ mensagem: 'Reserva cancelada com sucesso' });
+};

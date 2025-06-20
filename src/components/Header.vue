@@ -49,26 +49,31 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted,} from 'vue'
 import { RouterLink } from 'vue-router'
 import { Home, Utensils, Calendar, Phone, User, ShoppingCart } from 'lucide-vue-next'
 
 
-const mostrarDropdown = ref(false)
-const cartCount = ref(/*todo*/)
 
-// Simula usuário logado (substitua por lógica real)
-const usuario = ref(JSON.parse(localStorage.getItem('usuario')) || null)
+const usuario = ref(null);
+const mostrarDropdown = ref(false);
 
-function abrirCarrinho() {
-  // todo
+function carregarUsuario() {
+  const usuarioJSON = localStorage.getItem('usuario');
+  usuario.value = usuarioJSON ? JSON.parse(usuarioJSON) : null;
 }
 
 function deslogar() {
-  localStorage.removeItem('usuario')
-  usuario.value = null
-  window.location.reload()
+  localStorage.removeItem('usuario');
+  localStorage.removeItem('token');
+  usuario.value = null;
+  window.location.href = '/'; 
 }
+
+onMounted(() => {
+  carregarUsuario();
+});
+
 </script>
 
 

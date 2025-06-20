@@ -24,17 +24,19 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { post } from '@/services/api';
-import { useRouter } from 'vue-router';
+import { ref, inject } from 'vue'
+import { post } from '@/services/api'
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
-const email = ref('');
-const senha = ref('');
+const router = useRouter()
+const auth = inject('auth')
+
+const email = ref('')
+const senha = ref('')
 
 async function validarLogin() {
   if (!email.value || !senha.value) {
-    alert('Por favor, preencha todos os campos.');
+    alert('Preencha todos os campos');
     return;
   }
 
@@ -44,16 +46,26 @@ async function validarLogin() {
       senha: senha.value
     });
 
-    if (response.mensagem) {
-      alert(response.mensagem);
-      if (response.mensagem.includes('sucesso')) {
-        router.push('/'); 
-      }
+    const { token, usuario, mensagem } = response.data;
+
+    if (token && usuario) {
+      localStorage.setItem('usuario', JSON.stringify(usuario));
+      localStorage.setItem('token', token);
+
+      alert(mensagem || 'Login feito com sucesso!');
+
+      window.location.href = '/';  
+    } else {
+      alert(mensagem || 'Falha no login');
     }
-  } catch (error) {
-    alert('Erro ao fazer login.');
-    console.error(error);
+  } catch (err) {
+    alert('Erro no login');
+    console.error(err);
   }
 }
+
 </script>
+
+
+
 

@@ -1,11 +1,13 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import jwt from 'jsonwebtoken';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const usersFilePath = path.join(__dirname, '../data/users.json');
+const JWT_SECRET = 'seuSegredoSuperSecretoAqui'; // Coloque no .env em produção!
 
 export function register(req, res) {
   const { nome, sobrenome, email, senha } = req.body;
@@ -51,5 +53,14 @@ export function login(req, res) {
     return res.status(401).json({ mensagem: 'Email ou senha inválidos.' });
   }
 
-  res.status(200).json({ mensagem: 'Login realizado com sucesso.', nome: user.nome });
+  const token = jwt.sign({ email: user.email, nome: user.nome }, JWT_SECRET, { expiresIn: '1h' });
+
+  res.status(200).json({
+    mensagem: 'Login realizado com sucesso.',
+    token,
+    usuario: {
+      nome: user.nome,
+      email: user.email
+    }
+  });
 }
