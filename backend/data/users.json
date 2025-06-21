@@ -10,5 +10,11 @@
     "sobrenome": "da silva",
     "email": "admin@admin.com",
     "senha": "admin"
+  },
+  {
+    "nome": "Melipe",
+    "sobrenome": "Farley",
+    "email": "m@gmail.com",
+    "senha": "m"
   }
 ]

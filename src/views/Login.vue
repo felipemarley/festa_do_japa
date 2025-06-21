@@ -56,7 +56,7 @@ async function validarLogin() {
       localStorage.setItem('usuario', JSON.stringify(usuario))
       localStorage.setItem('token', token)
       alert(mensagem || 'Login feito com sucesso!')
-      router.push('/')
+      window.location.href = '/'
     } else {
       erro.value = mensagem || 'Falha no login.'
     }
