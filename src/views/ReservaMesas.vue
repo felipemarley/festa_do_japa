@@ -28,14 +28,30 @@
           <p>Reservada por: {{ mesaSelecionada.nome }} {{ mesaSelecionada.sobrenome }}</p>
         </div>
         <div v-else>
-          <input v-model="form.nome" placeholder="Nome" />
-          <input v-model="form.sobrenome" placeholder="Sobrenome" />
+          <p>Deseja reservar com seu nome: <strong>{{ usuario.nome }} {{ usuario.sobrenome }}</strong>?</p>
         </div>
       </template>
 
       <template #footer>
-        <button v-if="mesaSelecionada?.reservada" class="cancelar" @click="cancelarReserva">Cancelar Reserva</button>
-        <button v-else class="confirmar" @click="confirmarReserva">Confirmar</button>
+        <template v-if="mesaSelecionada?.reservada">
+          <button
+            v-if="isMinhaReserva()"
+            class="cancelar"
+            @click="cancelarReserva"
+          >
+            Cancelar Reserva
+          </button>
+          <button
+            v-else
+            class="cancelar"
+            @click="fecharModal"
+          >
+            Fechar
+          </button>
+        </template>
+        <template v-else>
+          <button class="confirmar" @click="confirmarReserva">Confirmar</button>
+        </template>
       </template>
     </Modal>
   </div>
@@ -43,6 +59,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import { UtensilsCrossed } from 'lucide-vue-next'
 import Modal from '@/components/Modal.vue'
 import api from '@/services/api'
@@ -50,17 +67,22 @@ import api from '@/services/api'
 const mesas = ref([])
 const mostrarModal = ref(false)
 const mesaSelecionada = ref(null)
-const form = ref({ nome: '', sobrenome: '' })
 const TableIcon = UtensilsCrossed
+const router = useRouter()
+
+const usuario = ref({ nome: '', sobrenome: '' })
 
 const carregarMesas = async () => {
-  const res = await api.get('/reservations')
-  mesas.value = res.data
+  try {
+    const res = await api.get('/reservations')
+    mesas.value = res.data
+  } catch (e) {
+    console.error('Erro ao carregar mesas:', e)
+  }
 }
 
 const selecionarMesa = (mesa) => {
   mesaSelecionada.value = mesa
-  form.value = { nome: '', sobrenome: '' }
   mostrarModal.value = true
 }
 
@@ -70,22 +92,57 @@ const fecharModal = () => {
 }
 
 const confirmarReserva = async () => {
-  await api.post('/reservations', {
-    id: mesaSelecionada.value.id,
-    nome: form.value.nome,
-    sobrenome: form.value.sobrenome
-  })
-  await carregarMesas()
-  fecharModal()
+  try {
+    await api.post('/reservations', {
+      id: mesaSelecionada.value.id,
+      nome: usuario.value.nome,
+      sobrenome: usuario.value.sobrenome
+    })
+    await carregarMesas()
+    fecharModal()
+  } catch (e) {
+    console.error('Erro ao reservar mesa:', e)
+  }
 }
 
 const cancelarReserva = async () => {
-  await api.delete(`/reservations/${mesaSelecionada.value.id}`)
-  await carregarMesas()
-  fecharModal()
+  try {
+    await api.delete(`/reservations/${mesaSelecionada.value.id}`)
+    await carregarMesas()
+    fecharModal()
+  } catch (e) {
+    console.error('Erro ao cancelar reserva:', e)
+  }
 }
 
-onMounted(carregarMesas)
+const isMinhaReserva = () => {
+  return (
+    mesaSelecionada.value?.nome === usuario.value.nome &&
+    mesaSelecionada.value?.sobrenome === usuario.value.sobrenome
+  )
+}
+
+onMounted(() => {
+  try {
+    const usuarioLocal = JSON.parse(localStorage.getItem('usuario'))
+
+    if (!usuarioLocal || !usuarioLocal.nome || !usuarioLocal.email) {
+      router.push('/login')
+      return
+    }
+
+    usuario.value = {
+      nome: usuarioLocal.nome,
+      sobrenome: usuarioLocal.sobrenome
+    }
+
+    carregarMesas()
+  } catch (e) {
+    router.push('/login')
+  }
+})
+
+
 </script>
 
 <style scoped>
@@ -143,21 +200,7 @@ input {
   font-size: 1rem;
 }
 
-button.confirmar {
-  background-color: transparent;
-  color: #fff;
-  border: 2px solid #fff;
-  padding: 0.6rem 1.2rem;
-  font-weight: bold;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button.confirmar:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-}
-
+button.confirmar,
 button.cancelar {
   background-color: transparent;
   color: #fff;
@@ -169,6 +212,7 @@ button.cancelar {
   transition: 0.3s;
 }
 
+button.confirmar:hover,
 button.cancelar:hover {
   background-color: rgba(255, 255, 255, 0.15);
 }

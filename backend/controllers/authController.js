@@ -60,6 +60,7 @@ export function login(req, res) {
     token,
     usuario: {
       nome: user.nome,
+      sobrenome: user.sobrenome,
       email: user.email
     }
   });

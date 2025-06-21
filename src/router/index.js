@@ -40,7 +40,8 @@ const routes = [
   {
     path: '/reservas',
     name: 'Reservas',
-    component: () => import("../views/ReservaMesas.vue")
+    component: () => import("../views/ReservaMesas.vue"),
+    meta: { requiresAuth: true }
   }
 
 ]
@@ -53,5 +54,14 @@ const router = createRouter({
   }
 })
 
-export default router
+router.beforeEach((to, from, next) => {
+  const usuarioLogado = localStorage.getItem('token')
 
+  if (to.meta.requiresAuth && !usuarioLogado) {
+    next('/login')
+  } else {
+    next()
+  }
+})
+
+export default router
