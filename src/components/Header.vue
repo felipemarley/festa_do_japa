@@ -8,7 +8,14 @@
         </div>
       </RouterLink>
 
-      <nav class="nav">
+      <button class="btn-mobile-nav" @click="isMenuOpen = true">
+        <Menu size="28" class="icon-white" />
+      </button>
+
+      <nav class="nav" :class="{ 'is-open': isMenuOpen }">
+        <button class="btn-close-nav" @click="isMenuOpen = false">
+          <X size="28" class="icon-white" />
+        </button>
         <RouterLink to="/" class="nav-link">
           <Home size="16" class="icon" /> Início
         </RouterLink>
@@ -49,14 +56,14 @@
 </template>
 
 <script setup>
-import { ref, onMounted,} from 'vue'
-import { RouterLink } from 'vue-router'
-import { Home, Utensils, Calendar, Phone, User, ShoppingCart } from 'lucide-vue-next'
-
-
+import { ref, onMounted, watch } from 'vue'
+import { RouterLink, useRoute } from 'vue-router'
+import { Home, Utensils, Calendar, Phone, User, ShoppingCart, Menu, X } from 'lucide-vue-next'
 
 const usuario = ref(null);
 const mostrarDropdown = ref(false);
+const isMenuOpen = ref(false);
+const route = useRoute();
 
 function carregarUsuario() {
   const usuarioJSON = localStorage.getItem('usuario');
@@ -67,11 +74,16 @@ function deslogar() {
   localStorage.removeItem('usuario');
   localStorage.removeItem('token');
   usuario.value = null;
-  window.location.href = '/'; 
+  isMenuOpen.value = false;
+  window.location.href = '/';
 }
 
 onMounted(() => {
   carregarUsuario();
+});
+
+watch(() => route.path, () => {
+  isMenuOpen.value = false;
 });
 
 </script>
@@ -253,5 +265,105 @@ onMounted(() => {
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
   border-bottom: 8px solid #000;
+}
+
+.btn-mobile-nav,
+.btn-close-nav {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1002;
+}
+
+@media (max-width: 992px) {
+  .btn-mobile-nav {
+    display: block;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 80%;
+    max-width: 320px;
+    height: 100vh;
+    background-color: #1a1a1a;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    padding: 4rem 2rem;
+    transform: translateX(100%);
+    transition: transform 0.35s ease-in-out;
+    z-index: 1001;
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.25);
+  }
+
+  .nav.is-open {
+    transform: translateX(0);
+  }
+
+  .btn-close-nav {
+    display: block;
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  .nav-link {
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .dropdown-container {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+
+  .btn-login {
+    background: none;
+    box-shadow: none;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0;
+    text-transform: none;
+  }
+
+  .dropdown-menu {
+    position: static;
+    background: none;
+    box-shadow: none;
+    border-radius: 0;
+    min-width: auto;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #444;
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  .dropdown-menu::before {
+    display: none;
+  }
+
+  .btn-cart {
+    background: none;
+    box-shadow: none;
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .restaurant-name {
+    display: none;
+  }
 }
 </style>
